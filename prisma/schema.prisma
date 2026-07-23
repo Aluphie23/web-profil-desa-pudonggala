@@ -1,0 +1,106 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        String   @id @default(cuid())
+  name      String
+  email     String   @unique
+  password  String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Destination {
+  id            String   @id @default(cuid())
+  slug          String   @unique
+  name          String
+  category      String   // Pantai, Alam, Budaya
+  shortDesc     String
+  description   String
+  facilities    String   // Array of facility names stored as JSON string
+  location      String
+  openingHours  String?
+  ticketPrice   String?
+  bestTimeToVisit String?
+  featured      Boolean  @default(false)
+  images        DestinationImage[]
+  umkms         UMKM[]
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+}
+
+model DestinationImage {
+  id            String      @id @default(cuid())
+  url           String
+  alt           String?
+  order         Int         @default(0)
+  destinationId String
+  destination   Destination @relation(fields: [destinationId], references: [id], onDelete: Cascade)
+}
+
+model GalleryItem {
+  id        String   @id @default(cuid())
+  type      String   // image, video
+  url       String
+  thumbnail String?
+  alt       String?
+  album     String   @default("Umum")
+  order     Int      @default(0)
+  createdAt DateTime @default(now())
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model VillageProfile {
+  id          String @id @default(cuid())
+  name        String
+  tagline     String
+  history     String
+  vision      String
+  mission     String // Array of mission statements stored as JSON string
+  population  String
+  households  String
+  malePop     String
+  femalePop   String
+  area        String
+  address     String
+  phone       String
+  email       String
+  officeHours String
+  latitude    Float?
+  longitude   Float?
+  updatedAt   DateTime @updatedAt
+}
+
+model UMKM {
+  id          String   @id @default(cuid())
+  name        String
+  ownerName   String
+  category    String   // Kuliner, Kerajinan, Jasa, Fashion, dll
+  description String
+  priceRange  String?  // e.g. "Rp 10.000 - Rp 50.000"
+  whatsapp    String?  // Phone number for direct contact
+  location    String
+  imageUrl    String?
+  
+  // Optional relation to a Destination (e.g., if the UMKM is at Pantai Pudonggala)
+  destinationId String?
+  destination   Destination? @relation(fields: [destinationId], references: [id], onDelete: SetNull)
+  
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+}
