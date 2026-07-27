@@ -2,7 +2,7 @@ import Link from "next/link";
 import { prisma } from "@/lib/prisma";
 import { SectionHeading } from "@/components/shared/SectionHeading";
 import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
-import { MapPin, Users, Home, TrendingUp, ArrowRight, Sparkles, Store } from "lucide-react";
+import { MapPin, Users, Home, TrendingUp, ArrowRight, Sparkles, Store, Calendar, HeartPulse, GraduationCap, Building2, Megaphone, CheckCircle2, FileText, CreditCard, Briefcase, FileBadge } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ParallaxHero } from "@/components/animations/ParallaxHero";
 import { MotionSection } from "@/components/animations/MotionSection";
@@ -69,214 +69,133 @@ export default async function HomePage() {
 
       </ParallaxHero>
 
-      {/* Sambutan Section */}
-      <section className="py-24 bg-background relative overflow-hidden">
-        <div className="absolute top-0 right-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2" />
+
+      {/* Pengantar Wilayah Section */}
+      <section className="py-24 bg-white relative overflow-hidden border-t border-gray-100">
+        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-[url('https://images.unsplash.com/photo-1596489370009-41e9ab6eb37e?auto=format&fit=crop&w=800&q=80')] bg-cover bg-center opacity-[0.03] rounded-full blur-2xl -translate-y-1/2 translate-x-1/3" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="flex flex-col md:flex-row gap-16 items-center">
-            <MotionSection direction="left" className="md:w-1/3 flex justify-center">
-              <div className="relative">
-                <div className="w-64 h-64 md:w-80 md:h-80 rounded-3xl overflow-hidden shadow-glass-lg ring-4 ring-white">
-                  <ImageWithFallback
-                    src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=800&q=80"
-                    alt="Kepala Desa"
-                    fill
-                  />
-                </div>
-                <div className="absolute -bottom-4 -right-4 w-20 h-20 bg-gradient-accent rounded-2xl flex items-center justify-center shadow-glow-accent">
-                  <span className="text-white text-2xl font-bold font-serif">&quot;</span>
-                </div>
+          <MotionSection direction="up" className="max-w-4xl mx-auto text-center">
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-primary/10 text-primary text-sm font-medium mb-8">
+              <MapPin className="w-4 h-4" />
+              Geografi Wilayah
+            </div>
+            
+            <p className="text-xl md:text-2xl text-foreground leading-relaxed font-serif text-justify md:text-center">
+              Kabupaten Konawe Utara memiliki total <strong className="text-primary">159 desa</strong> dan <strong className="text-primary">11 kelurahan</strong> yang tersebar di <strong className="text-primary">13 kecamatan</strong>, seperti Kecamatan Asera, Lasolo, dan Molawe. 
+              Karena jumlahnya yang sangat banyak, daftar lengkap nama seluruh desa dapat dilihat langsung melalui Situs Resmi Konawe Utara atau data BPS Konawe Utara.
+            </p>
+            
+            <div className="mt-16 flex flex-col items-center justify-center gap-6">
+              <div className="w-full flex items-center justify-center gap-6">
+                <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent flex-1 max-w-[200px]" />
+                <Sparkles className="w-5 h-5 text-accent animate-pulse" />
+                <div className="h-px bg-gradient-to-r from-transparent via-accent to-transparent flex-1 max-w-[200px]" />
               </div>
-            </MotionSection>
-            <MotionSection direction="right" className="md:w-2/3 text-center md:text-left">
-              <SectionHeading title="Sambutan Kepala Desa" centered={false} />
-              <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
-                <p>
-                  Selamat datang di website resmi {profile.name}. Kami sangat bangga
-                  memperkenalkan potensi desa kami kepada masyarakat luas melalui
-                  platform digital ini.
-                </p>
-                <p>
-                  {profile.name} memiliki pesona alam yang luar biasa, terutama
-                  pantainya yang indah. Kami terus berkomitmen untuk membangun desa
-                  wisata yang ramah lingkungan dan memberdayakan ekonomi masyarakat
-                  lokal.
-                </p>
-              </div>
-            </MotionSection>
+              <h3 className="text-3xl md:text-5xl lg:text-6xl font-black font-serif text-transparent bg-clip-text bg-gradient-to-br from-primary-dark via-primary to-accent drop-shadow-sm pb-2">
+                Dan salah satunya adalah <br className="hidden md:block" /> Desa Pudonggala
+              </h3>
+              <div className="w-24 h-1.5 bg-gradient-to-r from-primary to-accent rounded-full mt-2 shadow-glow-accent" />
+            </div>
+          </MotionSection>
+        </div>
+      </section>
+
+      {/* Fasilitas & Layanan Publik Section */}
+      <section className="py-24 bg-muted/30 relative overflow-hidden">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+          <MotionSection className="text-center mb-16">
+            <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-4">Fasilitas & Layanan Publik</h2>
+            <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
+              Akses cepat ke informasi berbagai fasilitas kesehatan, pendidikan, dan pusat administrasi di Desa Pudonggala.
+            </p>
+          </MotionSection>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {[
+              { title: "Kesehatan", desc: "Puskesmas & Posyandu", icon: HeartPulse, color: "text-rose-500", bg: "bg-rose-500/10" },
+              { title: "Pendidikan", desc: "SD Negeri 3 Sawa", icon: GraduationCap, color: "text-blue-500", bg: "bg-blue-500/10" },
+              { title: "Keagamaan", desc: "Tempat Ibadah / Masjid", icon: Users, color: "text-amber-500", bg: "bg-amber-500/10" },
+              { title: "Pemerintahan", desc: "Kantor Kepala Desa", icon: Building2, color: "text-emerald-500", bg: "bg-emerald-500/10" },
+            ].map((item, idx) => (
+              <MotionSection key={idx} delay={idx * 0.1} direction="up" className="h-full">
+                <div className="bg-white rounded-2xl p-6 text-center shadow-glass border border-gray-100 hover:shadow-lg transition-all hover:-translate-y-1 group h-full flex flex-col items-center">
+                  <div className={`w-16 h-16 rounded-2xl ${item.bg} ${item.color} flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
+                    <item.icon className="w-8 h-8" />
+                  </div>
+                  <h3 className="font-bold text-foreground text-lg mb-2">{item.title}</h3>
+                  <p className="text-muted-foreground text-sm leading-relaxed">{item.desc}</p>
+                </div>
+              </MotionSection>
+            ))}
           </div>
         </div>
       </section>
 
-      {/* Destinasi Unggulan */}
-      <section className="py-24 bg-muted/50 relative overflow-hidden">
-        <div className="absolute bottom-0 left-0 w-72 h-72 bg-accent/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2" />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <MotionSection>
-            <SectionHeading
-              title="Destinasi Unggulan"
-              subtitle="Temukan tempat-tempat indah yang wajib Anda kunjungi di desa kami."
-              centered
-            />
-          </MotionSection>
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {destinations.map((dest) => (
-              <StaggerItem key={dest.id}>
-                <Link href={`/wisata/${dest.slug}`} className="block group">
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-lg border border-gray-100 hover:border-primary/20 transition-all duration-500 hover:-translate-y-2">
-                    <div className="relative h-64 w-full overflow-hidden">
-                      <ImageWithFallback
-                        src={dest.images[0]?.url}
-                        alt={dest.name}
-                        fill
-                        className="group-hover:scale-110 transition-transform duration-700"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
-                      <div className="absolute bottom-4 left-4">
-                        <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-sm text-primary-dark shadow-sm">
-                          {dest.category}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="p-6">
-                      <h3 className="text-xl font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
-                        {dest.name}
-                      </h3>
-                      <p className="text-muted-foreground line-clamp-2 mb-4 text-sm leading-relaxed">
-                        {dest.shortDesc}
-                      </p>
-                      <span className="text-primary font-semibold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all">
-                        Lihat Detail
-                        <ArrowRight className="w-4 h-4" />
-                      </span>
-                    </div>
-                  </div>
-                </Link>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-          <MotionSection delay={0.4} className="mt-14 text-center">
-            <Button asChild variant="outline" size="lg" className="rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white px-10 py-6 font-semibold hover:shadow-glow hover:scale-105 transition-all">
-              <Link href="/wisata">
-                Lihat Semua Destinasi
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
-          </MotionSection>
-        </div>
-      </section>
-
-      {/* UMKM Section */}
+      {/* Layanan Mandiri / Administrasi Section */}
       <section className="py-24 bg-background relative overflow-hidden">
+        <div className="absolute top-1/2 left-0 w-96 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2 -translate-x-1/2" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <MotionSection>
-            <SectionHeading
-              title="Produk Lokal & UMKM"
-              subtitle="Dukung perekonomian lokal dengan berbelanja produk asli dari masyarakat kami."
-              centered
-            />
-          </MotionSection>
-          <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {umkms.map((umkm) => (
-              <StaggerItem key={umkm.id}>
-                <Link href="/umkm" className="block group">
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-lg border border-gray-100 hover:border-primary/20 transition-all duration-500 hover:-translate-y-2 h-full flex flex-col">
-                    <div className="relative h-48 w-full overflow-hidden bg-muted">
-                      <ImageWithFallback
-                        src={umkm.imageUrl}
-                        alt={umkm.name}
-                        fill
-                        className="group-hover:scale-110 transition-transform duration-700"
-                        fallbackText="Tidak ada foto"
-                      />
-                      <div className="absolute top-4 left-4">
-                        <span className="px-3 py-1.5 rounded-full text-xs font-semibold bg-white/90 backdrop-blur-sm text-primary-dark shadow-sm">
-                          {umkm.category}
-                        </span>
-                      </div>
+          <MotionSection className="flex flex-col lg:flex-row gap-12 items-start">
+            <div className="lg:w-1/3 sticky top-24">
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 text-accent-dark text-sm font-medium mb-6">
+                <FileText className="w-4 h-4" />
+                Layanan Administrasi
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif font-bold text-foreground mb-6">
+                Persyaratan Surat & Dokumen
+              </h2>
+              <p className="text-muted-foreground leading-relaxed mb-8">
+                Informasi persyaratan umum untuk pembuatan berbagai dokumen administrasi kependudukan atau surat pengantar di Kantor Desa Pudonggala.
+              </p>
+              <Button asChild size="lg" className="rounded-full bg-primary text-white hover:bg-primary-dark">
+                <Link href="/kontak">Hubungi Perangkat Desa</Link>
+              </Button>
+            </div>
+            
+            <div className="lg:w-2/3 grid gap-6">
+              {[
+                { 
+                  title: "Pembuatan e-KTP Baru", 
+                  icon: CreditCard,
+                  reqs: ["Berusia minimal 17 tahun / sudah menikah.", "Fotokopi Kartu Keluarga (KK).", "Datang langsung ke kantor kecamatan untuk rekam foto/biometrik."] 
+                },
+                { 
+                  title: "Pembuatan Kartu Keluarga (KK)", 
+                  icon: Users,
+                  reqs: ["Buku Nikah / Akta Perkawinan (bagi pasangan baru).", "Surat Pindah (jika dari luar wilayah).", "Fotokopi KK lama (jika pecah KK)."] 
+                },
+                { 
+                  title: "Surat Keterangan Domisili", 
+                  icon: Building2,
+                  reqs: ["Fotokopi KTP pemohon.", "Fotokopi Kartu Keluarga (KK).", "Surat pengantar dari RT/RW setempat (opsional sesuai kebijakan)."] 
+                },
+                { 
+                  title: "Surat Keterangan Usaha (SKU)", 
+                  icon: Briefcase,
+                  reqs: ["Fotokopi KTP dan KK.", "Foto lokasi/tempat usaha.", "Pengantar RT/RW (jika diperlukan)."] 
+                }
+              ].map((service, idx) => (
+                <MotionSection key={idx} direction="right" delay={idx * 0.1}>
+                  <div className="bg-white rounded-2xl p-6 sm:p-8 flex flex-col sm:flex-row gap-6 shadow-sm border border-gray-100 hover:shadow-md transition-shadow group">
+                    <div className="w-16 h-16 rounded-2xl bg-primary/10 text-primary flex items-center justify-center shrink-0">
+                      <service.icon className="w-8 h-8" />
                     </div>
-                    <div className="p-6 flex-1 flex flex-col">
-                      <h3 className="text-xl font-serif font-bold text-foreground mb-1 group-hover:text-primary transition-colors">
-                        {umkm.name}
-                      </h3>
-                      <p className="text-primary-dark text-sm font-medium mb-3 flex items-center gap-1.5">
-                        <Store className="w-4 h-4" />
-                        {umkm.ownerName}
-                      </p>
-                      <p className="text-muted-foreground line-clamp-2 mb-4 text-sm leading-relaxed flex-1">
-                        {umkm.description}
-                      </p>
-                      <span className="text-primary font-semibold text-sm inline-flex items-center gap-2 group-hover:gap-3 transition-all">
-                        Lihat Katalog UMKM
-                        <ArrowRight className="w-4 h-4" />
-                      </span>
+                    <div>
+                      <h4 className="text-xl font-bold text-foreground mb-4 group-hover:text-primary transition-colors">{service.title}</h4>
+                      <ul className="space-y-2">
+                        {service.reqs.map((req, rIdx) => (
+                          <li key={rIdx} className="flex items-start gap-2 text-muted-foreground text-sm">
+                            <CheckCircle2 className="w-4 h-4 text-accent shrink-0 mt-0.5" />
+                            <span className="leading-relaxed">{req}</span>
+                          </li>
+                        ))}
+                      </ul>
                     </div>
                   </div>
-                </Link>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-          <MotionSection delay={0.4} className="mt-14 text-center">
-            <Button asChild variant="outline" size="lg" className="rounded-full border-2 border-primary text-primary hover:bg-primary hover:text-white px-10 py-6 font-semibold hover:shadow-glow hover:scale-105 transition-all">
-              <Link href="/umkm">
-                Lihat Semua Produk
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
-          </MotionSection>
-        </div>
-      </section>
-
-      {/* Statistics Section */}
-      <section className="py-24 bg-gradient-primary text-white relative overflow-hidden">
-        <div className="absolute inset-0 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHZpZXdCb3g9IjAgMCA2MCA2MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZyBmaWxsPSJub25lIiBmaWxsLXJ1bGU9ImV2ZW5vZGQiPjxnIGZpbGw9IiNmZmZmZmYiIGZpbGwtb3BhY2l0eT0iMC4wMyI+PHBhdGggZD0iTTM2IDM0djItSDI0di0yaDEyem0wLTEydi0ySDI0djJoMTJ6bS0xMiAxNnYyaDEydi0ySDI0em0xMi04di0ySDI0djJoMTJ6Ii8+PC9nPjwvZz48L3N2Zz4=')] opacity-50" />
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <MotionSection className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-4">Desa dalam Angka</h2>
-            <div className="flex items-center gap-1.5 justify-center">
-              <div className="h-1 w-8 rounded-full bg-white/60" />
-              <div className="h-1 w-3 rounded-full bg-accent" />
-              <div className="h-1 w-1.5 rounded-full bg-white/30" />
+                </MotionSection>
+              ))}
             </div>
           </MotionSection>
-          <StaggerContainer className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
-            <StaggerItem>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/15 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mx-auto mb-4">
-                  <MapPin className="w-7 h-7 text-accent" />
-                </div>
-                <AnimatedCounter target={destinations.length} suffix="+" className="text-4xl font-bold mb-2 block" />
-                <span className="text-white/70 text-sm font-medium tracking-wide uppercase">Destinasi</span>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/15 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mx-auto mb-4">
-                  <Users className="w-7 h-7 text-accent" />
-                </div>
-                <AnimatedCounter target={parseInt(profile.population) || 0} className="text-4xl font-bold mb-2 block" />
-                <span className="text-white/70 text-sm font-medium tracking-wide uppercase">Penduduk</span>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/15 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mx-auto mb-4">
-                  <Home className="w-7 h-7 text-accent" />
-                </div>
-                <AnimatedCounter target={parseInt(profile.households) || 0} className="text-4xl font-bold mb-2 block" />
-                <span className="text-white/70 text-sm font-medium tracking-wide uppercase">Kepala Keluarga</span>
-              </div>
-            </StaggerItem>
-            <StaggerItem>
-              <div className="bg-white/10 backdrop-blur-sm rounded-2xl p-8 border border-white/10 hover:bg-white/15 transition-all duration-300">
-                <div className="w-14 h-14 rounded-xl bg-accent/20 flex items-center justify-center mx-auto mb-4">
-                  <TrendingUp className="w-7 h-7 text-accent" />
-                </div>
-                <span className="text-4xl font-bold mb-2 block">{profile.area}</span>
-                <span className="text-white/70 text-sm font-medium tracking-wide uppercase">Luas Wilayah</span>
-              </div>
-            </StaggerItem>
-          </StaggerContainer>
         </div>
       </section>
 

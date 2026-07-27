@@ -12,8 +12,9 @@ import { motion } from "framer-motion";
 const navLinks = [
   { href: "/", label: "Beranda" },
   { href: "/profil", label: "Profil" },
+  { href: "/infografis", label: "Infografis" },
   { href: "/wisata", label: "Wisata" },
-  { href: "/umkm", label: "UMKM" },
+  { href: "/umkm", label: "Hasil Bumi" },
   { href: "/galeri", label: "Galeri" },
   { href: "/kontak", label: "Kontak" },
 ];

@@ -6,6 +6,8 @@ import { Users, UserPlus, UserMinus, Home, Target, CheckCircle2 } from "lucide-r
 import { MotionSection } from "@/components/animations/MotionSection";
 import { StaggerContainer, StaggerItem } from "@/components/animations/StaggerContainer";
 import { AnimatedCounter } from "@/components/animations/AnimatedCounter";
+import { DemographicsCharts } from "@/components/charts/DemographicsCharts";
+import { DetailedDemographics } from "@/components/profile/DetailedDemographics";
 
 export const revalidate = 60;
 
@@ -85,6 +87,12 @@ export default async function ProfilPage() {
               );
             })}
           </StaggerContainer>
+
+          {/* Extended Demographics Charts */}
+          <DemographicsCharts />
+
+          {/* Detailed Text-based Demographics */}
+          <DetailedDemographics />
         </div>
       </section>
 
