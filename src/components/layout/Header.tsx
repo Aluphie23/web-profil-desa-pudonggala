@@ -8,6 +8,7 @@ import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
 import { Menu } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { motion } from "framer-motion";
+import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
 
 const navLinks = [
   { href: "/", label: "Beranda" },
@@ -19,27 +20,17 @@ const navLinks = [
   { href: "/kontak", label: "Kontak" },
 ];
 
-export function Header() {
+interface HeaderProps {
+  logoUrl?: string | null;
+}
+
+export function Header({ logoUrl }: HeaderProps) {
   const [isOpen, setIsOpen] = useState(false);
   const pathname = usePathname();
 
-  const isAdminPage = pathname?.startsWith("/admin");
-
-  // It's absolute now, so it never stays in view when scrolled.
-  // It's always transparent on public pages, and solid on admin pages.
-  const headerBg = !isAdminPage
-    ? "bg-transparent border-transparent shadow-none"
-    : "bg-white/80 backdrop-blur-2xl border border-gray-200/50 shadow-glass rounded-2xl";
-
-  const textColor = !isAdminPage
-    ? "text-white"
-    : "text-foreground";
-
+  const headerBg = "bg-transparent border-transparent shadow-none";
+  const textColor = "text-white";
   const logoColor = "text-white";
-
-  if (isAdminPage) {
-    return null;
-  }
 
   return (
     <motion.header
@@ -53,9 +44,15 @@ export function Header() {
     >
       <div className="px-4 sm:px-6 lg:px-8 flex h-18 items-center justify-between">
         <Link href="/" className="flex items-center gap-3 group">
-          <div className="w-9 h-9 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
-            <span className="text-white font-bold text-sm">P</span>
-          </div>
+          {logoUrl ? (
+            <div className="relative w-10 h-10 group-hover:scale-110 transition-all duration-300">
+              <ImageWithFallback src={logoUrl} alt="Logo Desa" fill className="object-contain" />
+            </div>
+          ) : (
+            <div className="w-9 h-9 bg-gradient-primary rounded-xl flex items-center justify-center group-hover:scale-110 group-hover:shadow-glow transition-all duration-300">
+              <span className="text-white font-bold text-sm">P</span>
+            </div>
+          )}
           <span className={cn("font-serif font-bold text-xl transition-colors duration-300", logoColor)}>
             Desa Pudonggala
           </span>
@@ -72,13 +69,8 @@ export function Header() {
                 className={cn(
                   "relative px-4 py-2 text-sm font-medium rounded-full transition-all duration-300",
                   isActive
-                    ? !isAdminPage
-                      ? "bg-white/20 text-white"
-                      : "bg-primary/10 text-primary"
-                    : cn(
-                        textColor,
-                        "hover:bg-primary/10 hover:text-primary"
-                      )
+                    ? "bg-white/20 text-white"
+                    : cn(textColor, "hover:bg-primary/10 hover:text-primary")
                 )}
               >
                 {link.label}
@@ -99,9 +91,7 @@ export function Header() {
             asChild
             className={cn(
               "rounded-full px-6 hidden sm:flex transition-all duration-300",
-              !isAdminPage
-                ? "bg-white/20 text-white border border-white/30 hover:bg-white hover:text-primary-dark backdrop-blur-sm"
-                : "bg-primary hover:bg-primary-dark text-white"
+              "bg-white/20 text-white border border-white/30 hover:bg-white hover:text-primary-dark backdrop-blur-sm"
             )}
           >
             <Link href="/kontak">Hubungi Kami</Link>

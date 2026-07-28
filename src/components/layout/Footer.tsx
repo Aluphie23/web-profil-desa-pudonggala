@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { ImageWithFallback } from "@/components/shared/ImageWithFallback";
 
-export function Footer() {
-  const pathname = usePathname();
-  if (pathname?.startsWith("/admin")) {
-    return null;
-  }
+interface FooterProps {
+  logoUrl?: string | null;
+}
+
+export function Footer({ logoUrl }: FooterProps) {
 
   return (
     <footer className="bg-gradient-to-b from-[#0B1D26] to-[#07131A] text-white pt-20 pb-8 relative overflow-hidden">
@@ -19,9 +19,15 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-16">
           <div>
             <div className="flex items-center gap-3 mb-6">
-              <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center shadow-glow">
-                <span className="text-white font-bold text-lg">P</span>
-              </div>
+              {logoUrl ? (
+                <div className="relative w-12 h-12">
+                  <ImageWithFallback src={logoUrl} alt="Logo Desa" fill className="object-contain" />
+                </div>
+              ) : (
+                <div className="w-10 h-10 bg-gradient-primary rounded-xl flex items-center justify-center shadow-glow">
+                  <span className="text-white font-bold text-lg">P</span>
+                </div>
+              )}
               <span className="font-serif font-bold text-2xl text-white">Desa Pudonggala</span>
             </div>
             <p className="text-white/50 leading-relaxed max-w-sm">

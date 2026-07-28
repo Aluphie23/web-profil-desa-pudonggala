@@ -66,24 +66,31 @@ model Message {
 }
 
 model VillageProfile {
-  id          String @id @default(cuid())
-  name        String
-  tagline     String
-  history     String
-  vision      String
-  mission     String // Array of mission statements stored as JSON string
-  population  String
-  households  String
-  malePop     String
-  femalePop   String
-  area        String
-  address     String
-  phone       String
-  email       String
-  officeHours String
-  latitude    Float?
-  longitude   Float?
-  updatedAt   DateTime @updatedAt
+  id             String @id @default(cuid())
+  name           String
+  tagline        String
+  history        String
+  vision         String
+  mission        String // Array of mission statements stored as JSON string
+  population     String
+  households     String
+  malePop        String
+  femalePop      String
+  area           String
+  address        String
+  phone          String
+  email          String
+  officeHours    String
+  latitude       Float?
+  longitude      Float?
+  logoUrl        String?
+  logoKabUrl     String?
+  heroImageUrl   String?
+  officeImageUrl String?
+  district       String?
+  regency        String?
+  province       String?
+  updatedAt      DateTime @updatedAt
 }
 
 model UMKM {

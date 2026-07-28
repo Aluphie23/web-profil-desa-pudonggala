@@ -32,6 +32,13 @@ export async function updateVillageProfile(data: any) {
       phone: data.phone,
       email: data.email,
       officeHours: data.officeHours,
+      logoUrl: data.logoUrl,
+      logoKabUrl: data.logoKabUrl,
+      heroImageUrl: data.heroImageUrl,
+      officeImageUrl: data.officeImageUrl,
+      district: data.district,
+      regency: data.regency,
+      province: data.province,
     },
   });
 

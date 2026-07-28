@@ -19,30 +19,30 @@ import {
 import { MotionSection } from "@/components/animations/MotionSection";
 
 const genderData = [
-  { name: "Laki-laki", value: 150 },
-  { name: "Perempuan", value: 129 },
+  { name: "Laki-laki", value: 142 },
+  { name: "Perempuan", value: 127 },
 ];
 const GENDER_COLORS = ["#3b82f6", "#ec4899"];
 
 const dusunData = [
-  { name: "Dusun 1", LakiLaki: 39, Perempuan: 37 },
-  { name: "Dusun 2", LakiLaki: 52, Perempuan: 46 },
-  { name: "Dusun 3", LakiLaki: 59, Perempuan: 46 },
+  { name: "Dusun 1", LakiLaki: 40, Perempuan: 37 },
+  { name: "Dusun 2", LakiLaki: 50, Perempuan: 44 },
+  { name: "Dusun 3", LakiLaki: 52, Perempuan: 46 },
 ];
 
 const ageData = [
-  { name: "Balita (0-5)", jumlah: 9 },
-  { name: "Anak-anak (6-14)", jumlah: 59 },
-  { name: "Remaja (15-24)", jumlah: 46 },
-  { name: "Dewasa (25-54)", jumlah: 124 },
-  { name: "Lansia (55+)", jumlah: 30 },
+  { name: "Balita (1-5)", jumlah: 8 },
+  { name: "Anak & Remaja (6-15)", jumlah: 61 },
+  { name: "Dewasa (16-56)", jumlah: 175 },
+  { name: "Lansia (>56)", jumlah: 25 },
 ];
 
 const educationData = [
   { name: "SD", jumlah: 54 },
   { name: "SMP", jumlah: 57 },
   { name: "SMA", jumlah: 83 },
-  { name: "Sarjana (S1)", jumlah: 31 },
+  { name: "Sarjana", jumlah: 31 },
+  { name: "Belum/Tidak Sekolah", jumlah: 44 },
 ];
 
 const jobData = [

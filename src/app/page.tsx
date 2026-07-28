@@ -31,7 +31,7 @@ export default async function HomePage() {
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <ParallaxHero
-        imageUrl="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"
+        imageUrl={profile.heroImageUrl || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"}
         className="h-screen"
         overlayClass="bg-gradient-to-b from-black/60 via-black/40 to-primary-dark/80"
       >
@@ -81,8 +81,8 @@ export default async function HomePage() {
             </div>
             
             <p className="text-xl md:text-2xl text-foreground leading-relaxed font-serif text-justify md:text-center">
-              Kabupaten Konawe Utara memiliki total <strong className="text-primary">159 desa</strong> dan <strong className="text-primary">11 kelurahan</strong> yang tersebar di <strong className="text-primary">13 kecamatan</strong>, seperti Kecamatan Asera, Lasolo, dan Molawe. 
-              Karena jumlahnya yang sangat banyak, daftar lengkap nama seluruh desa dapat dilihat langsung melalui Situs Resmi Konawe Utara atau data BPS Konawe Utara.
+              {profile.regency ? `Kabupaten ${profile.regency}` : "Kabupaten Konawe Utara"} memiliki total <strong className="text-primary">159 desa</strong> dan <strong className="text-primary">11 kelurahan</strong> yang tersebar di <strong className="text-primary">13 kecamatan</strong>.
+              Karena jumlahnya yang sangat banyak, daftar lengkap nama seluruh desa dapat dilihat langsung melalui Situs Resmi Kabupaten atau data BPS setempat.
             </p>
             
             <div className="mt-16 flex flex-col items-center justify-center gap-6">

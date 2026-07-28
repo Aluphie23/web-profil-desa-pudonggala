@@ -6,6 +6,7 @@ import { Header } from "@/components/layout/Header";
 import { Footer } from "@/components/layout/Footer";
 import { Toaster } from "sonner";
 import { SplashScreen } from "@/components/animations/SplashScreen";
+import { prisma } from "@/lib/prisma";
 
 const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"],
@@ -24,20 +25,22 @@ export const metadata: Metadata = {
   description: "Website Resmi Profil dan Pariwisata Desa Pudonggala, Sulawesi Tenggara.",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const profile = await prisma.villageProfile.findFirst();
+
   return (
     <html lang="id" className={cn(jakarta.variable, dmSerif.variable)}>
       <body className="font-sans antialiased text-foreground bg-background flex flex-col min-h-screen">
         <SplashScreen />
-        <Header />
+        <Header logoUrl={profile?.logoUrl} />
         <main className="flex-1">
           {children}
         </main>
-        <Footer />
+        <Footer logoUrl={profile?.logoUrl} />
         <Toaster position="top-center" richColors />
       </body>
     </html>
