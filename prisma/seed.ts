@@ -29,11 +29,11 @@ async function main() {
         name: 'Desa Pudonggala',
         tagline: 'Pesona Alam Sulawesi Tenggara',
         history: 'Desa Pudonggala telah ada sejak awal abad ke-20, berawal dari pemukiman nelayan kecil di pesisir pantai. Seiring berjalannya waktu, desa ini berkembang menjadi salah satu destinasi wisata utama di wilayah ini.',
-        vision: 'Menjadi desa wisata yang mandiri, berbudaya, dan sejahtera pada tahun 2030',
+        vision: 'Terwujudnya masyarakat Pudonggala yang dinamis, agamis, maju dan mandiri',
         mission: JSON.stringify([
-          'Meningkatkan kualitas infrastruktur pariwisata yang ramah lingkungan.',
-          'Memberdayakan ekonomi masyarakat melalui UMKM dan kerajinan lokal.',
-          'Melestarikan budaya dan tradisi leluhur sebagai daya tarik desa.'
+          'Meningkatkan pengelolaan sektor-sektor unggulan.',
+          'Memperkuat kapasitas kelembagaan desa dan kelembagaan masyarakat.',
+          'Mendorong partisipasi aktif masyarakat dan kaum perempuan dalam pembangunan desa.'
         ]),
         population: '2.450 Jiwa',
         households: '650 KK',

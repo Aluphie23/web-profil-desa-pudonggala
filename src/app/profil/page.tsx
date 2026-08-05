@@ -108,10 +108,10 @@ export default async function ProfilPage() {
               <Map className="w-12 h-12 text-accent mb-6" />
               <h3 className="text-2xl font-bold mb-4">Batas Wilayah</h3>
               <ul className="space-y-4 text-muted-foreground">
-                <li className="flex items-center gap-3"><span className="w-20 font-semibold text-foreground">Utara:</span> Desa Tetangga Utara</li>
-                <li className="flex items-center gap-3"><span className="w-20 font-semibold text-foreground">Selatan:</span> Laut Banda / Teluk</li>
-                <li className="flex items-center gap-3"><span className="w-20 font-semibold text-foreground">Timur:</span> Desa Tetangga Timur</li>
-                <li className="flex items-center gap-3"><span className="w-20 font-semibold text-foreground">Barat:</span> Hutan Lindung / Perbukitan</li>
+                <li className="flex items-center gap-3"><span className="w-20 font-semibold text-foreground">Utara:</span> Berbatasan dengan Desa Pudonggala Utama</li>
+                <li className="flex items-center gap-3"><span className="w-20 font-semibold text-foreground">Timur:</span> Berbatasan dengan Laut Banda</li>
+                <li className="flex items-center gap-3"><span className="w-20 font-semibold text-foreground">Selatan:</span> Berbatasan dengan Desa Wawoluri</li>
+                <li className="flex items-center gap-3"><span className="w-20 font-semibold text-foreground">Barat:</span> Berbatasan dengan Desa Kokapi</li>
               </ul>
             </MotionSection>
           </div>
