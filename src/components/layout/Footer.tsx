@@ -63,6 +63,13 @@ export function Footer({ logoUrl }: FooterProps) {
         
         <div className="border-t border-white/10 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-white/30">
           <p>&copy; {new Date().getFullYear()} Pemerintah Desa Pudonggala. All rights reserved.</p>
+          <div className="flex items-center">
+            <img 
+              src="/logo-konut.png" 
+              alt="Logo Konawe Utara" 
+              className="w-24 h-auto drop-shadow-xl opacity-70 hover:opacity-100 transition-opacity"
+            />
+          </div>
         </div>
       </div>
     </footer>

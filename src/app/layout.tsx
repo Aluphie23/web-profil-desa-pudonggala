@@ -34,7 +34,7 @@ export default async function RootLayout({
 
   return (
     <html lang="id" className={cn(jakarta.variable, dmSerif.variable)}>
-      <body className="font-sans antialiased text-foreground bg-background flex flex-col min-h-screen">
+      <body className="font-sans antialiased text-foreground bg-background flex flex-col min-h-screen relative">
         <SplashScreen />
         <Header logoUrl={profile?.logoUrl} />
         <main className="flex-1">

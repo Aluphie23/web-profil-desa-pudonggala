@@ -58,26 +58,7 @@ export function GalleryGrid({
 
   return (
     <>
-      <motion.div
-        className="flex flex-wrap gap-4 justify-center mb-12"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        {albums.map((a) => (
-          <Link key={a} href={a === "Semua" ? "/galeri" : `/galeri?album=${a}`}>
-            <span
-              className={`inline-block px-6 py-2.5 rounded-full text-sm font-semibold transition-all duration-300 cursor-pointer ${
-                currentAlbum === a
-                  ? "bg-gradient-primary text-white shadow-glow"
-                  : "bg-white text-muted-foreground border border-gray-200 hover:border-primary/30 hover:text-primary hover:shadow-sm"
-              }`}
-            >
-              {a}
-            </span>
-          </Link>
-        ))}
-      </motion.div>
+
 
       {items.length === 0 ? (
         <motion.div
@@ -89,7 +70,7 @@ export function GalleryGrid({
           <p className="text-xl">Tidak ada foto/video untuk album ini.</p>
         </motion.div>
       ) : (
-        <div className="columns-1 sm:columns-2 md:columns-3 lg:columns-4 gap-6 space-y-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
           {items.map((item, idx) => (
             <motion.div
               key={item.id}
@@ -109,7 +90,7 @@ export function GalleryGrid({
                     alt={item.alt || "Video Thumbnail"}
                     width={800}
                     height={600}
-                    className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                    className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
                     <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center text-white backdrop-blur-sm shadow-lg group-hover:scale-110 transition-transform">
@@ -123,7 +104,7 @@ export function GalleryGrid({
                   alt={item.alt || "Gallery Image"}
                   width={800}
                   height={600}
-                  className="w-full h-auto object-cover group-hover:scale-105 transition-transform duration-500"
+                  className={`w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500 ${item.url.includes('laut') ? 'object-[center_75%]' : ''}`}
                 />
               )}
             </motion.div>

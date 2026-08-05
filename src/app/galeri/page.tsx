@@ -27,7 +27,8 @@ export default async function GaleriPage({
       <PageHero
         title="Galeri Desa"
         subtitle="Kumpulan momen dan keindahan Desa Pudonggala dalam lensa."
-        imageUrl="https://images.unsplash.com/photo-1510414842594-a61c69b5ae57?auto=format&fit=crop&w=1920&q=80"
+        imageUrl="/pudonggalakelapa.jpeg"
+        className="h-screen min-h-screen"
       />
 
       <section className="py-24 bg-muted/50 relative overflow-hidden">

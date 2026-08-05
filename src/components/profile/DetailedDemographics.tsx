@@ -117,7 +117,7 @@ const demographicsData = {
 };
 
 const DataCard = ({ title, icon: Icon, data, total, male, female }: { title: string, icon: any, data: Record<string, number>, total?: number, male?: number, female?: number }) => (
-  <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow">
+  <div className="bg-white rounded-2xl p-6 shadow-sm border border-gray-100/50 hover:shadow-md transition-shadow h-full flex flex-col">
     <div className="flex items-center gap-3 mb-6 pb-4 border-b border-gray-50">
       <div className="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
         <Icon className="w-5 h-5" />
@@ -136,7 +136,7 @@ const DataCard = ({ title, icon: Icon, data, total, male, female }: { title: str
         )}
       </div>
     </div>
-    <ul className="space-y-3">
+    <ul className="space-y-3 flex-1">
       {Object.entries(data).sort((a, b) => b[1] - a[1]).map(([label, count], idx) => (
         <li key={idx} className="flex items-center justify-between text-sm">
           <span className="text-muted-foreground">{label}</span>
@@ -183,11 +183,11 @@ export function DetailedDemographics() {
             <DataCard title="Dusun 3" icon={MapPin} data={demographicsData.dusun3.pendidikan} total={demographicsData.dusun3.total} male={59} female={46} />
           </MotionSection>
           <MotionSection direction="up" delay={0.4} className="h-full">
-            <div className="h-full relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white p-6 shadow-glass-lg">
+            <div className="h-full relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary-dark text-white p-6 shadow-glass-lg flex flex-col">
               <div className="absolute top-0 right-0 p-4 opacity-10">
                 <Users className="w-32 h-32" />
               </div>
-              <div className="relative z-10">
+              <div className="relative z-10 flex flex-col h-full">
                 <div className="flex items-center gap-3 mb-6 pb-4 border-b border-white/20">
                   <div className="w-10 h-10 rounded-xl bg-white/20 flex items-center justify-center backdrop-blur-sm">
                     <GraduationCap className="w-5 h-5 text-white" />
@@ -197,7 +197,7 @@ export function DetailedDemographics() {
                     <p className="text-sm text-primary-light">Seluruh Desa</p>
                   </div>
                 </div>
-                <ul className="space-y-3">
+                <ul className="space-y-3 flex-1">
                   {Object.entries(demographicsData.totals.pendidikan).sort((a, b) => b[1] - a[1]).slice(0, 7).map(([label, count], idx) => (
                     <li key={idx} className="flex items-center justify-between text-sm">
                       <span className="text-primary-light">{label}</span>

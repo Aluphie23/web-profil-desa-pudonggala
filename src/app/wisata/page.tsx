@@ -28,7 +28,8 @@ export default async function WisataPage({
       <PageHero
         title="Destinasi Wisata"
         subtitle="Jelajahi keindahan alam dan budaya yang ditawarkan oleh Desa Pudonggala."
-        imageUrl="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1920&q=80"
+        imageUrl="/laut1.png"
+        imagePosition="bg-[center_75%]"
       />
 
       <section className="py-16 bg-background relative overflow-hidden">
@@ -54,10 +55,10 @@ export default async function WisataPage({
           {/* Grid */}
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {destinations.map((dest) => (
-              <StaggerItem key={dest.id}>
-                <Link href={`/wisata/${dest.slug}`} className="block group">
-                  <div className="bg-white rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-lg border border-gray-100 hover:border-primary/20 transition-all duration-500 hover:-translate-y-3">
-                    <div className="relative h-64 w-full overflow-hidden">
+              <StaggerItem key={dest.id} className="h-full">
+                <Link href={`/wisata/${dest.slug}`} className="block group h-full">
+                  <div className="bg-white rounded-2xl overflow-hidden shadow-glass hover:shadow-glass-lg border border-gray-100 hover:border-primary/20 transition-all duration-500 hover:-translate-y-3 h-full flex flex-col">
+                    <div className="relative h-64 w-full overflow-hidden shrink-0">
                       <ImageWithFallback
                         src={dest.images[0]?.url}
                         alt={dest.name}
@@ -76,14 +77,14 @@ export default async function WisataPage({
                         )}
                       </div>
                     </div>
-                    <div className="p-6">
+                    <div className="p-6 flex-1 flex flex-col">
                       <h3 className="text-xl font-serif font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                         {dest.name}
                       </h3>
-                      <p className="text-muted-foreground line-clamp-2 mb-4 text-sm leading-relaxed">
+                      <p className="text-muted-foreground line-clamp-3 mb-4 text-sm leading-relaxed flex-1">
                         {dest.shortDesc}
                       </p>
-                      <span className="inline-flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all">
+                      <span className="inline-flex items-center gap-2 text-primary font-semibold text-sm group-hover:gap-3 transition-all mt-auto">
                         Lihat Detail
                         <ArrowRight className="w-4 h-4" />
                       </span>

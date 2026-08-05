@@ -31,7 +31,7 @@ export default async function HomePage() {
     <div className="flex flex-col min-h-screen">
       {/* Hero Section */}
       <ParallaxHero
-        imageUrl={profile.heroImageUrl || "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1920&q=80"}
+        imageUrl="/bg-pantai.jpg"
         className="h-screen"
         overlayClass="bg-gradient-to-b from-black/60 via-black/40 to-primary-dark/80"
       >

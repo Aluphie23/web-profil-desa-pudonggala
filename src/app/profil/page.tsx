@@ -197,9 +197,16 @@ export default async function ProfilPage() {
             
             <MotionSection direction="right" className="lg:w-1/2 w-full">
               <SectionHeading title="Peta & Fasilitas" />
-              <div className="mt-8 rounded-3xl overflow-hidden shadow-glass ring-1 ring-black/5 bg-gray-100 h-[300px] relative flex items-center justify-center">
-                {/* Embed Map Here if available */}
-                <p className="text-muted-foreground">Peta Satelit / Google Maps Desa Pudonggala</p>
+              <div className="mt-8 rounded-3xl overflow-hidden shadow-glass ring-1 ring-black/5 bg-gray-100 h-[350px] relative flex items-center justify-center group">
+                <iframe 
+                  className="absolute inset-0 w-full h-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" 
+                  frameBorder="0" 
+                  scrolling="no" 
+                  marginHeight={0} 
+                  marginWidth={0} 
+                  src="https://maps.google.com/maps?q=Desa%20Pudonggala,%20Kecamatan%20Sawa,%20Kabupaten%20Konawe%20Utara&t=m&z=13&output=embed&iwloc=near"
+                  title="Peta Desa Pudonggala"
+                ></iframe>
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
                 Desa ini dilengkapi dengan berbagai fasilitas umum seperti Sekolah Dasar, Taman Kanak-kanak, Masjid, serta pusat layanan kesehatan desa (Posyandu/Pustu) yang mudah diakses oleh warga.

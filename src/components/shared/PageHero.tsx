@@ -8,6 +8,7 @@ interface PageHeroProps {
   subtitle?: string;
   imageUrl: string;
   className?: string;
+  imagePosition?: string;
 }
 
 export function PageHero({
@@ -15,6 +16,7 @@ export function PageHero({
   subtitle,
   imageUrl,
   className,
+  imagePosition = "bg-center",
 }: PageHeroProps) {
   return (
     <div
@@ -24,7 +26,7 @@ export function PageHero({
       )}
     >
       <div
-        className="absolute inset-0 bg-cover bg-center z-0 scale-110"
+        className={cn("absolute inset-0 bg-cover z-0 scale-110", imagePosition)}
         style={{ backgroundImage: `url(${imageUrl})` }}
       />
       <div className="absolute inset-0 bg-gradient-to-b from-[#0B1D26]/80 via-primary-dark/60 to-primary/50 z-10" />

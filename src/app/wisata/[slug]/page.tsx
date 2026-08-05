@@ -41,7 +41,7 @@ export default async function DestinationDetailPage({
           alt={destination.name}
           fill
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/60" />
         
         <div className="absolute top-8 left-4 md:left-8 z-20">
           <Button asChild variant="outline" className="bg-white/10 text-white border-white/20 hover:bg-white/20 backdrop-blur-md">
