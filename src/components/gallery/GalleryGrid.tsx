@@ -115,69 +115,85 @@ export function GalleryGrid({
       {/* Lightbox */}
       <AnimatePresence>
         {selectedIndex !== null && (
-          <Dialog
-            open={selectedIndex !== null}
-            onOpenChange={(open) => !open && setSelectedIndex(null)}
+          <motion.div
+            className="fixed inset-0 z-[100] bg-black/95 backdrop-blur-md flex items-center justify-center p-4 sm:p-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            onClick={() => setSelectedIndex(null)}
           >
-            <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 bg-transparent border-0 overflow-hidden shadow-none">
-              {selectedItem && (
-                <motion.div
-                  className="relative w-full h-[90vh] flex items-center justify-center group"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  exit={{ opacity: 0, scale: 0.9 }}
-                  transition={{ duration: 0.3 }}
+            {selectedItem && (
+              <motion.div
+                className="relative w-full max-w-5xl h-full max-h-[85vh] flex flex-col items-center justify-center group"
+                initial={{ opacity: 0, scale: 0.95, y: 10 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                exit={{ opacity: 0, scale: 0.95, y: 10 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Close Button */}
+                <button
+                  className="absolute -top-12 right-0 md:-right-12 md:-top-4 z-50 p-2 md:p-3 bg-white/10 hover:bg-white/20 text-white rounded-full backdrop-blur-md transition-all border border-white/10 hover:scale-110"
+                  onClick={() => setSelectedIndex(null)}
                 >
-                  <button
-                    className="absolute top-4 right-4 z-50 p-2 bg-black/50 hover:bg-black/70 text-white rounded-full backdrop-blur-sm transition-colors"
-                    onClick={() => setSelectedIndex(null)}
-                  >
-                    <X className="w-6 h-6" />
-                  </button>
+                  <X className="w-5 h-5 md:w-6 md:h-6" />
+                </button>
 
-                  <button
-                    className="absolute left-4 z-50 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
-                    onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
-                  >
-                    <ChevronLeft className="w-8 h-8" />
-                  </button>
+                {/* Left Button (Desktop) */}
+                <button
+                  className="absolute left-4 md:-left-16 z-50 p-3 md:p-4 bg-black/40 hover:bg-white/20 text-white rounded-full backdrop-blur-md transition-all border border-white/10 opacity-0 group-hover:opacity-100 focus:opacity-100 hover:scale-110 hidden sm:block"
+                  onClick={(e) => { e.stopPropagation(); handlePrevious(); }}
+                >
+                  <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
+                </button>
+                
+                {/* Mobile Left/Right Tap Areas */}
+                <div className="absolute left-0 top-0 bottom-0 w-1/3 z-40 sm:hidden cursor-pointer" onClick={(e) => { e.stopPropagation(); handlePrevious(); }} />
+                <div className="absolute right-0 top-0 bottom-0 w-1/3 z-40 sm:hidden cursor-pointer" onClick={(e) => { e.stopPropagation(); handleNext(); }} />
 
-                  <div className="relative w-full h-full p-4 md:p-12">
-                    {selectedItem.type === "video" ? (
-                      <div className="w-full h-full flex items-center justify-center">
-                        <iframe
-                          src={selectedItem.url.replace("watch?v=", "embed/")}
-                          className="w-full max-w-4xl aspect-video rounded-xl shadow-2xl"
-                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                          allowFullScreen
-                        ></iframe>
-                      </div>
-                    ) : (
-                      <div className="relative w-full h-full">
-                        <ImageWithFallback
-                          src={selectedItem.url}
-                          alt={selectedItem.alt || "Lightbox image"}
-                          fill
-                          className="object-contain"
-                        />
-                      </div>
-                    )}
-                  </div>
+                <div className="relative w-full h-full flex items-center justify-center rounded-xl overflow-hidden shadow-2xl">
+                  {selectedItem.type === "video" ? (
+                    <iframe
+                      src={selectedItem.url.replace("watch?v=", "embed/")}
+                      className="w-full max-w-4xl aspect-video rounded-xl shadow-2xl border border-white/10"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowFullScreen
+                    ></iframe>
+                  ) : (
+                    <div className="relative w-full h-full">
+                      <ImageWithFallback
+                        src={selectedItem.url}
+                        alt={selectedItem.alt || "Lightbox image"}
+                        fill
+                        className="object-contain"
+                        containerClassName="w-full h-full bg-transparent"
+                      />
+                    </div>
+                  )}
+                </div>
 
-                  <button
-                    className="absolute right-4 z-50 p-3 bg-black/50 hover:bg-black/70 text-white rounded-full backdrop-blur-sm transition-colors opacity-0 group-hover:opacity-100 focus:opacity-100"
-                    onClick={(e) => { e.stopPropagation(); handleNext(); }}
-                  >
-                    <ChevronRight className="w-8 h-8" />
-                  </button>
-                  
-                  <div className="absolute bottom-6 left-1/2 -translate-x-1/2 bg-black/50 px-4 py-2 rounded-full text-white/90 text-sm backdrop-blur-sm">
+                {/* Right Button (Desktop) */}
+                <button
+                  className="absolute right-4 md:-right-16 z-50 p-3 md:p-4 bg-black/40 hover:bg-white/20 text-white rounded-full backdrop-blur-md transition-all border border-white/10 opacity-0 group-hover:opacity-100 focus:opacity-100 hover:scale-110 hidden sm:block"
+                  onClick={(e) => { e.stopPropagation(); handleNext(); }}
+                >
+                  <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
+                </button>
+                
+                <div className="absolute -bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 w-full">
+                  <div className="bg-white/10 px-4 py-1.5 rounded-full text-white/90 text-sm font-medium backdrop-blur-md border border-white/10">
                     {selectedIndex! + 1} / {items.length}
                   </div>
-                </motion.div>
-              )}
-            </DialogContent>
-          </Dialog>
+                  {selectedItem.alt && (
+                    <p className="text-white/70 text-sm max-w-lg text-center truncate px-4">
+                      {selectedItem.alt}
+                    </p>
+                  )}
+                </div>
+              </motion.div>
+            )}
+          </motion.div>
         )}
       </AnimatePresence>
     </>

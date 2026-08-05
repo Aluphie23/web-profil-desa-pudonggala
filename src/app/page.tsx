@@ -199,33 +199,7 @@ export default async function HomePage() {
         </div>
       </section>
 
-      {/* Call to Action Banner */}
-      <ParallaxHero
-        imageUrl="https://images.unsplash.com/photo-1519046904884-53103b34b206?auto=format&fit=crop&w=1920&q=80"
-        className="py-32"
-        overlayClass="bg-gradient-to-r from-primary-dark/90 via-primary/80 to-primary-dark/90"
-      >
-        <div className="text-center px-4 max-w-3xl mx-auto">
-          <MotionSection>
-            <h2 className="text-3xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 tracking-tight">
-              Rencanakan Kunjungan Anda
-            </h2>
-          </MotionSection>
-          <MotionSection delay={0.2}>
-            <p className="text-lg md:text-xl text-white/70 mb-10 font-light leading-relaxed">
-              Kami siap menyambut Anda dengan keindahan alam dan keramahan masyarakat desa.
-            </p>
-          </MotionSection>
-          <MotionSection delay={0.4}>
-            <Button asChild size="lg" className="bg-gradient-accent text-white rounded-full px-10 py-6 text-base font-semibold hover:shadow-glow-accent hover:scale-105 transition-all">
-              <Link href="/kontak">
-                Hubungi Kami Sekarang
-                <ArrowRight className="w-4 h-4 ml-2" />
-              </Link>
-            </Button>
-          </MotionSection>
-        </div>
-      </ParallaxHero>
+
     </div>
   );
 }
