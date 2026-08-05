@@ -28,7 +28,7 @@ async function main() {
       data: {
         name: 'Desa Pudonggala',
         tagline: 'Pesona Alam Sulawesi Tenggara',
-        history: 'Desa Pudonggala telah ada sejak awal abad ke-20, berawal dari pemukiman nelayan kecil di pesisir pantai. Seiring berjalannya waktu, desa ini berkembang menjadi salah satu destinasi wisata utama di wilayah ini.',
+        history: 'Pada tahun 1982, Desa Karya Sari resmi terbentuk sebagai hasil pemekaran dari Desa Sawa. Pada awal berdirinya, Desa Karya Sari dipimpin oleh Muhammad Daeng Juma. Menjelang dua tahun masa kepemimpinannya, nama desa ini disepakati untuk diubah menjadi Desa Pudonggala.\n\nSejak berdiri hingga saat ini, Desa Pudonggala telah dilayani oleh beberapa kepala desa/penjabat desa, yaitu:\nMuhammad Daeng Juma (1982–1995)\nDaeng Matawang (1995–2002)\nYunus (2002–2014)\nSurianto (2014–sekarang(2026))\n\nSeiring dengan perkembangan wilayah dan dinamika penduduk, Desa Pudonggala mengalami pemekaran wilayah menjadi dua desa baru, yakni:\nDesa Matanggonawe, yang dimekarkan pada tahun 1997.\nDesa Panggulawu, yang dimekarkan pada tahun 2016.',
         vision: 'Terwujudnya masyarakat Pudonggala yang dinamis, agamis, maju dan mandiri',
         mission: JSON.stringify([
           'Meningkatkan pengelolaan sektor-sektor unggulan.',
