@@ -37,7 +37,7 @@ export default async function ProfilPage() {
               <SectionHeading title="Sejarah Desa" />
               <div className="space-y-4 text-muted-foreground text-lg leading-relaxed">
                 {profile.history.split("\n").map((paragraph, idx) => (
-                  <p key={idx}>{paragraph}</p>
+                  <p key={idx} dangerouslySetInnerHTML={{ __html: paragraph }} />
                 ))}
               </div>
             </MotionSection>
