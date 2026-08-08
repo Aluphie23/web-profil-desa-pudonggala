@@ -8,6 +8,9 @@ import { X, ChevronLeft, ChevronRight, Play } from "lucide-react";
 import { Dialog, DialogContent } from "@/components/ui/dialog";
 import { motion, AnimatePresence } from "framer-motion";
 
+import { FolderOpen } from "lucide-react";
+import { useRouter } from "next/navigation";
+
 interface GalleryItem {
   id: string;
   type: string;
@@ -33,14 +36,15 @@ const itemVariants = {
 
 export function GalleryGrid({
   items,
-  albums,
+  folders,
   currentAlbum,
 }: {
   items: GalleryItem[];
-  albums: string[];
-  currentAlbum: string;
+  folders: { name: string; coverImage: string | null; count: number }[];
+  currentAlbum: string | null;
 }) {
   const [selectedIndex, setSelectedIndex] = useState<number | null>(null);
+  const router = useRouter();
 
   const selectedItem = selectedIndex !== null ? items[selectedIndex] : null;
 
@@ -58,9 +62,74 @@ export function GalleryGrid({
 
   return (
     <>
+      {currentAlbum && (
+        <div className="mb-8 flex items-center justify-between">
+          <button 
+            onClick={() => router.push('/galeri')}
+            className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium bg-white/50 px-4 py-2 rounded-lg border border-primary/10 shadow-sm"
+          >
+            <ChevronLeft className="w-5 h-5" />
+            Kembali ke Album
+          </button>
+          <h2 className="text-2xl font-bold text-slate-800 capitalize">{currentAlbum}</h2>
+        </div>
+      )}
 
-
-      {items.length === 0 ? (
+      {!currentAlbum ? (
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
+          {folders.length === 0 ? (
+            <div className="col-span-full text-center py-20 text-muted-foreground">
+              <p className="text-xl">Tidak ada album ditemukan.</p>
+            </div>
+          ) : (
+            folders.map((folder, idx) => (
+              <motion.div
+                key={folder.name}
+                custom={idx}
+                variants={itemVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-30px" }}
+                className="relative rounded-2xl overflow-hidden cursor-pointer group bg-white border border-gray-100 shadow-glass hover:shadow-glass-lg hover:border-primary/20 transition-all duration-500"
+                onClick={() => router.push(`/galeri?album=${encodeURIComponent(folder.name)}`)}
+                whileHover={{ y: -4 }}
+              >
+                <div className="relative w-full aspect-video bg-muted/20">
+                  {folder.coverImage ? (
+                    <ImageWithFallback
+                      src={folder.coverImage}
+                      alt={folder.name}
+                      width={1280}
+                      height={720}
+                      containerClassName="w-full h-full"
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  ) : (
+                    <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                      <FolderOpen className="w-12 h-12 opacity-50" />
+                    </div>
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6">
+                    <div className="flex items-center gap-3">
+                      <div className="p-2 bg-primary/90 text-white rounded-lg backdrop-blur-sm">
+                        <FolderOpen className="w-5 h-5" />
+                      </div>
+                      <div>
+                        <h3 className="text-white font-bold text-xl capitalize drop-shadow-md">
+                          {folder.name.replace(/-/g, ' ')}
+                        </h3>
+                        <p className="text-white/80 text-sm font-medium">
+                          {folder.count} Foto
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </motion.div>
+            ))
+          )}
+        </div>
+      ) : items.length === 0 ? (
         <motion.div
           className="text-center py-20 text-muted-foreground"
           initial={{ opacity: 0 }}
@@ -88,9 +157,10 @@ export function GalleryGrid({
                   <ImageWithFallback
                     src={item.thumbnail || "https://placehold.co/800x600?text=Video"}
                     alt={item.alt || "Video Thumbnail"}
-                    width={800}
-                    height={600}
-                    className="w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500"
+                    width={1280}
+                    height={720}
+                    containerClassName="w-full aspect-video"
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 flex items-center justify-center bg-black/30 group-hover:bg-black/40 transition-colors">
                     <div className="w-16 h-16 bg-primary/90 rounded-full flex items-center justify-center text-white backdrop-blur-sm shadow-lg group-hover:scale-110 transition-transform">
@@ -102,9 +172,10 @@ export function GalleryGrid({
                 <ImageWithFallback
                   src={item.url}
                   alt={item.alt || "Gallery Image"}
-                  width={800}
-                  height={600}
-                  className={`w-full aspect-[4/3] object-cover group-hover:scale-105 transition-transform duration-500 ${item.url.includes('laut') ? 'object-[center_75%]' : ''}`}
+                  width={1280}
+                  height={720}
+                  containerClassName="w-full aspect-video"
+                  className={`w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ${item.url.includes('laut') ? 'object-[center_75%]' : ''}`}
                 />
               )}
             </motion.div>

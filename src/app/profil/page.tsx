@@ -55,37 +55,55 @@ export default async function ProfilPage() {
       </section>
 
       {/* Visi & Misi Section */}
-      <section className="py-24 bg-muted/30 relative overflow-hidden">
+      <section className="py-24 bg-gradient-to-b from-background to-muted/30 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-primary/20 to-transparent" />
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <MotionSection>
-              <SectionHeading title="Visi & Misi" centered />
-            </MotionSection>
-            
-            <MotionSection delay={0.2}>
-              <div className="bg-gradient-to-br from-primary/5 via-primary-light/50 to-accent-light/30 rounded-3xl p-10 md:p-14 mb-14 text-center border border-primary/10 shadow-glass">
-                <div className="w-16 h-16 rounded-2xl bg-gradient-primary flex items-center justify-center mx-auto mb-6 shadow-glow">
-                  <Target className="w-8 h-8 text-white" />
+          <MotionSection>
+            <SectionHeading title="Visi & Misi" centered />
+          </MotionSection>
+          
+          <div className="max-w-6xl mx-auto mt-12 grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12">
+            {/* Visi */}
+            <MotionSection delay={0.2} className="lg:col-span-5 flex flex-col">
+              <div className="bg-gradient-primary h-full rounded-3xl p-10 md:p-12 text-center md:text-left flex flex-col justify-center relative overflow-hidden shadow-xl shadow-primary/20 text-white">
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-white/10 rounded-full blur-3xl" />
+                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-black/10 rounded-full blur-3xl" />
+                
+                <div className="relative z-10">
+                  <div className="w-16 h-16 rounded-2xl bg-white/20 backdrop-blur-md flex items-center justify-center mb-8 border border-white/20 shadow-inner mx-auto md:mx-0">
+                    <Target className="w-8 h-8 text-white" />
+                  </div>
+                  <h4 className="text-sm font-bold mb-4 text-primary-light uppercase tracking-widest">Visi Desa</h4>
+                  <h3 className="text-3xl md:text-4xl font-serif italic font-medium leading-relaxed">
+                    &quot;{profile.vision}&quot;
+                  </h3>
                 </div>
-                <h3 className="text-2xl md:text-3xl font-serif italic text-foreground font-medium leading-relaxed">
-                  &quot;{profile.vision}&quot;
-                </h3>
               </div>
             </MotionSection>
 
-            <StaggerContainer className="space-y-3">
-              <h4 className="text-xl font-bold text-foreground mb-8 text-center">Misi Desa:</h4>
-              {missions.map((mission, idx) => (
-                <StaggerItem key={idx}>
-                  <div className="flex items-start gap-4 p-5 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-glass hover:border-primary/20 transition-all duration-300">
-                    <div className="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <CheckCircle2 className="w-5 h-5 text-primary" />
+            {/* Misi */}
+            <div className="lg:col-span-7 flex flex-col justify-center">
+              <StaggerContainer className="grid gap-4">
+                <div className="mb-4 hidden lg:block">
+                  <h4 className="text-2xl font-bold text-foreground">Misi Desa</h4>
+                  <p className="text-muted-foreground mt-2">Langkah strategis yang kami lakukan untuk mewujudkan visi desa.</p>
+                </div>
+                {missions.map((mission, idx) => (
+                  <StaggerItem key={idx}>
+                    <div className="group flex items-start gap-5 p-5 md:p-6 rounded-2xl bg-white border border-gray-100 shadow-sm hover:shadow-glass hover:border-primary/30 transition-all duration-300 relative overflow-hidden">
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <div className="w-12 h-12 rounded-xl bg-primary/10 group-hover:bg-primary transition-colors duration-500 flex items-center justify-center shrink-0 mt-0.5 shadow-sm relative z-10">
+                        <CheckCircle2 className="w-6 h-6 text-primary group-hover:text-white transition-colors duration-500" />
+                      </div>
+                      <div className="flex flex-col relative z-10">
+                        <span className="text-xs font-bold text-primary/60 mb-1.5 uppercase tracking-wider">Misi {idx + 1}</span>
+                        <p className="text-base md:text-lg text-foreground/80 leading-relaxed group-hover:text-foreground transition-colors duration-300">{mission}</p>
+                      </div>
                     </div>
-                    <p className="text-lg text-muted-foreground leading-relaxed">{mission}</p>
-                  </div>
-                </StaggerItem>
-              ))}
-            </StaggerContainer>
+                  </StaggerItem>
+                ))}
+              </StaggerContainer>
+            </div>
           </div>
         </div>
       </section>
@@ -197,15 +215,14 @@ export default async function ProfilPage() {
             
             <MotionSection direction="right" className="lg:w-1/2 w-full">
               <SectionHeading title="Peta & Fasilitas" />
-              <div className="mt-8 rounded-3xl overflow-hidden shadow-glass ring-1 ring-black/5 bg-gray-100 h-[350px] relative flex items-center justify-center group">
+              <div className="mt-8 rounded-3xl overflow-hidden shadow-glass ring-1 ring-black/5 bg-gray-100 h-[350px] relative group w-full">
                 <iframe 
-                  className="absolute inset-0 w-full h-full grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" 
-                  frameBorder="0" 
-                  scrolling="no" 
-                  marginHeight={0} 
-                  marginWidth={0} 
-                  src="https://maps.google.com/maps?q=Desa%20Pudonggala,%20Kecamatan%20Sawa,%20Kabupaten%20Konawe%20Utara&t=m&z=13&output=embed&iwloc=near"
+                  className="w-full h-full border-0 grayscale-[20%] group-hover:grayscale-0 transition-all duration-700" 
+                  src="https://maps.google.com/maps?q=Desa%20Pudonggala,%20Kecamatan%20Sawa,%20Kabupaten%20Konawe%20Utara&t=m&z=13&output=embed&iwloc="
                   title="Peta Desa Pudonggala"
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
                 ></iframe>
               </div>
               <p className="text-muted-foreground leading-relaxed mt-6">
